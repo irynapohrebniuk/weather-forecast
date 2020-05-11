@@ -9,20 +9,28 @@
 </section>
 
 <section *ngIf="data" class="forecast">
-  <div class="forecast__city">{{location}}</div>
+  <div class="forecast__city">{{data.name}}</div>
   <div class="col-1">
     <img src="../assets/icons/degrees.png" /></div>
-<div class="col-2">{{calculate(data.main.temp)}}</div>
+<div class="col-2">{{getCelcius(data.main.temp)}}</div>
 <div class="col-3">
   <div><img src="http://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png"></div>
   <div> {{data.weather[0].main}}</div>
 </div>
 <div class="col-4">
-  <p>Pressure: {{data.main.pressure}}</p>
-  <p>Humidity: {{data.main.humidity}}</p>
-  <p>Wind: {{data.wind.speed}} </p>
-  <p>Sunrise: {{data.sys.sunrise}}</p>
-  <p>Sunset: {{data.sys.sunset}}</p>
+  <p><span class="bold">Pressure:</span> {{data.main.pressure}} hPa</p>
+  <p><span class="bold">Humidity:</span> {{data.main.humidity}} %</p>
+  <p><span class="bold">Wind:</span> {{data.wind.speed}} km/s</p>
+  <p><span class="bold">Sunrise:</span> {{parseTime(data.sys.sunrise)}}</p>
+  <p><span class="bold">Sunset:</span> {{parseTime(data.sys.sunset)}}</p>
 </div>
 </section>
+<section class="daily-forecast" *ngIf="dailyData">
+  <app-daily-forecast 
+    [location] = "location"
+    [dailyData] = "dailyData"
+  >
+  </app-daily-forecast>
+</section>
+
 
