@@ -1,0 +1,28 @@
+<section class="wrapper">
+  <div class="wrapper__title">
+    Weather forecast
+  </div>
+  <div class="wrapper__search">
+      <input [(ngModel)]="location" type="text" placeholder="Location ..." />
+      <input type="submit" (click)="handleSearch()" value="Search" />
+  </div>
+</section>
+
+<section *ngIf="data" class="forecast">
+  <div class="forecast__city">{{location}}</div>
+  <div class="col-1">
+    <img src="../assets/icons/degrees.png" /></div>
+<div class="col-2">{{calculate(data.main.temp)}}</div>
+<div class="col-3">
+  <div><img src="http://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png"></div>
+  <div> {{data.weather[0].main}}</div>
+</div>
+<div class="col-4">
+  <p>Pressure: {{data.main.pressure}}</p>
+  <p>Humidity: {{data.main.humidity}}</p>
+  <p>Wind: {{data.wind.speed}} </p>
+  <p>Sunrise: {{data.sys.sunrise}}</p>
+  <p>Sunset: {{data.sys.sunset}}</p>
+</div>
+</section>
+
