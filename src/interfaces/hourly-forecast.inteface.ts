@@ -1,6 +1,6 @@
 import {IWeather} from './weather.inteface'
 
-export declare interface IDailyForecast {
+export declare interface IHourlyForecast {
     city: {
         id: number;
         name: string;

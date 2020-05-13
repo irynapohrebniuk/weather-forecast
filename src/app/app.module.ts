@@ -4,20 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
 import {Utilities} from '../utilities'
-import { from } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { HourlyWeatherComponent } from '../hourly-weather/hourly-weather.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DailyForecastComponent
+    HourlyWeatherComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [Utilities],
   bootstrap: [AppComponent]

@@ -3,12 +3,15 @@
     Weather forecast
   </div>
   <div class="wrapper__search">
-      <input [(ngModel)]="location" type="text" placeholder="Location ..." />
-      <input type="submit" (click)="handleSearch()" value="Search" />
+    <form #form="ngForm" (ngSubmit)="handleSearch(location.value)">
+      <input name="location" #location="ngModel" ngModel type="text" placeholder="Location ..." required />
+      <input type="submit" value="Search" />
+    </form>
+      
   </div>
 </section>
 
-<section *ngIf="data" class="forecast">
+<section *ngIf="data" class="forecast"> <!--   -->
   <div class="forecast__city">{{data.name}}</div>
   <div class="col-1">
     <img src="../assets/icons/degrees.png" /></div>
@@ -25,12 +28,11 @@
   <p><span class="bold">Sunset:</span> {{parseTime(data.sys.sunset)}}</p>
 </div>
 </section>
-<section class="daily-forecast" *ngIf="dailyData">
-  <app-daily-forecast 
+<section *ngIf="hourlyData" >
+  <app-hourly-weather  
     [location] = "location"
-    [dailyData] = "dailyData"
-  >
-  </app-daily-forecast>
+    [hourlyData] = "hourlyData" >
+  </app-hourly-weather>
 </section>
 
 

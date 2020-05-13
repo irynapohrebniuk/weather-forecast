@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+
 body {
   font-size: 16px;
 }
@@ -12,10 +17,9 @@ section {
 .wrapper {
   display: block;
   padding: 20px;
-  background-color: #BFC1C3;
-  border: 2px solid  #BFC1C3;
+  background-color:  #bfc1c3;
   border-radius: 4px 4px 0 0;
-  height: 50px;
+  height: 100px;
   &__title {
     float: left;
     font-size: 1.5em;
@@ -51,7 +55,6 @@ section {
 .forecast {
   padding: 20px;
   background-color:white;
-  border: 2px solid  #BFC1C3;
   &__city {
     text-align: center;
     font-size: 1.5em;
@@ -95,9 +98,9 @@ section {
     font-weight: bold;
   }
 
-  .daily-forecast {
+  .hourly-forecast {
     height: 200px;
-    width: 640px;
+    width: 100%;
   }
 
   

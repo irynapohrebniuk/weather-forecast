@@ -1,49 +1,42 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import { IWeather } from '../interfaces/weather.inteface';
-import { IDailyForecast } from '../interfaces/daily-forecast.inteface';
 import { Utilities } from '../utilities'
+import { WeatherService } from '../services/weather.service';
+import { IWeather } from '../interfaces/weather.inteface';
+import { IHourlyForecast } from '../interfaces/hourly-forecast.inteface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [WeatherService]
 })
-
-
 
 export class AppComponent {
   title = 'weather-forecast';
   location = '';
-
-  data: IWeather  = null;
-  dailyData: IDailyForecast = null;
+  data = null;
+  hourlyData = null;
 
   getCelcius(kelvin) {
     return Utilities.calculate(kelvin);
   }
 
+  constructor(private weatherService: WeatherService){}
+
   parseTime(timestamp) {
-    console.log("timestamp", timestamp);
-    const dateObject = new Date(timestamp*1000);
-    let options = { hour12: false};
+    const dateObject = new Date(timestamp * 1000);
+    let options = { hour12: false };
     return dateObject.toLocaleTimeString([], options)
   }
-
-  handleSearch() {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q="+this.location+"&APPID=ce62364fe4e72ef606baac38762b070c")
-      .then(res => res.json())
-      .then(data => {
-        console.log({data});
-        this.data = data;
-      })
-      fetch("https://api.openweathermap.org/data/2.5/forecast/?q="+this.location+"&appid=ce62364fe4e72ef606baac38762b070c")
-    .then(res => res.json())
-    .then(dailyData => {
-      console.log({dailyData});
-      this.dailyData = dailyData;
-      console.log("daily", dailyData.list[0])
-    })
-  }
   
+  handleSearch(location) {
+    this.location = location;
+
+      this.weatherService.getData(location)
+          .subscribe((data:IWeather) => this.data = data);
+      this.weatherService.getHourlyData(location)
+          .subscribe((hourlyData:IHourlyForecast) => this.hourlyData = hourlyData);
+    }
+
 }
