@@ -4,14 +4,18 @@ export declare interface IWeather {
     dt: number,
     dt_txt: string,
     name:string,
-    wind: {speed: number},
+    wind: {
+        speed: number,
+        deg: number
+    },
     main: {
         temp: number,
         feels_like: number,
         temp_min: number,
         temp_max: number,
         pressure: number,
-        humidity: number
+        humidity: number,
+        sea_level: number
     },
     sys: {
         sunrise: number,

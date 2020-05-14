@@ -1,31 +1,32 @@
-<div class="grid-container">
+<section>
     <div>
-        <div class="vertical-center">
-            <img src='../assets/icons/back-24.png' 
-            (click)="handlePrev()" 
-            class="thumb" 
-            *ngIf="currentIndex !== 0">
+        <h3>Hourly forecast</h3>
+    </div>
+    <div class="grid-container">
+        <div>
+            <div class="vertical-center">
+                <img src='../assets/icons/back-24.png' (click)="handlePrev()" class="thumb" *ngIf="currentIndex !== 0">
+            </div>
+        </div>
+        <div class="scroll-div" id="scroll">
+            <ul class="container">
+                <li *ngFor="let day of days; let i = index" [class.active]="currentIndex === i" class='thumb'
+                    (click)="handleClick(i)">
+                    <div class="date">{{getLTime(hourlyData.list[i].dt_txt)}}</div>
+                    <div class="temp">{{toCelcius(hourlyData.list[i].main.temp)}} &deg;</div>
+                    <img src="http://openweathermap.org/img/wn/{{hourlyData.list[i].weather[0].icon}}@2x.png" />
+                    <div><img src='../assets/icons/download-24.png' class="padding-bottom-10" /></div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div class="vertical-center">
+                <img src='../assets/icons/next-24.png' (click)="handleNext()" *ngIf="currentIndex !== days.length-1"
+                    class="thumb">
+            </div>
         </div>
     </div>
-    <div>
-        <ul class="container">
-            <li *ngFor="let day of days; let i = index" 
-            [class.active]="currentIndex === i" 
-            class='thumb'
-            (click)="handleClick(i)">
-                <div>{{hourlyData.list[i].dt_txt}}</div>
-                <img src="http://openweathermap.org/img/wn/{{hourlyData.list[i].weather[0].icon}}@2x.png" />
-                <div> {{getCelcius(hourlyData.list[i].main.temp_min)}} /
-                    {{getCelcius(hourlyData.list[i].main.temp_max)}}
-                </div>
-                <div><img src='../assets/icons/download-24.png' /></div>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <div class="vertical-center">
-             <img src='../assets/icons/next-24.png' (click)="handleNext()" class="thumb"
-            *ngIf="currentIndex !== days.length-1">
-        </div>
-    </div>
-</div>
+</section>
+<app-hourly-weather-details [hourlyData]='hourlyData' [currentIndex]='currentIndex'>
+
+</app-hourly-weather-details>

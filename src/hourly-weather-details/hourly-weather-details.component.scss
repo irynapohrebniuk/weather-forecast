@@ -1,0 +1,40 @@
+$section_width: 600px;
+
+* {
+  box-sizing: border-box;
+}
+
+section {
+  width: $section_width;
+  display: grid;
+  grid-template-columns:40% auto;
+  grid-gap: 10px;
+  justify-content: start;
+  background-color: #bfc1c3;
+  padding: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+section div {
+  display: inline-block;
+  padding: 5px;
+}
+
+div div {
+  display: block;
+}
+
+.pad {
+padding-bottom: 10px;
+}
+
+.time {
+  font-size: 1.2em;
+}
+
+.center {
+  text-align: center;
+}

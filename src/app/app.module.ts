@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import {Utilities} from '../utilities'
 import { HttpClientModule } from '@angular/common/http';
 import { HourlyWeatherComponent } from '../hourly-weather/hourly-weather.component';
+import { HourlyWeatherDetailsComponent } from '../hourly-weather-details/hourly-weather-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HourlyWeatherComponent
+    HourlyWeatherComponent,
+    HourlyWeatherDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AppComponent } from '../app/app.component'
 import { IHourlyForecast } from 'src/interfaces/hourly-forecast.inteface';
 import { Utilities } from '../utilities'
+import { CalcService } from 'src/services/calc-service';
 
 @Component({
   selector: 'app-hourly-weather',
@@ -12,13 +13,19 @@ export class HourlyWeatherComponent {
 
   @Input() location: AppComponent;
   @Input() hourlyData: IHourlyForecast;
-  
-  count = 5;
+
+  constructor(private calcService: CalcService) { }
+
+  count = 40;
   days = [...new Array(this.count)].fill(this.count);
   currentIndex = 0;
 
-  getCelcius(kelvin) {
-    return Utilities.calculate(kelvin);
+  toCelcius(kelvin) {
+    return this.calcService.toCelsius(kelvin);
+  }
+
+  getLTime(dateObj) {
+    return this.calcService.getTime(dateObj);
   }
 
   handleClick(index) {
@@ -26,17 +33,17 @@ export class HourlyWeatherComponent {
   }
 
   handlePrev() {
-    console.log(this.currentIndex);
     if (this.currentIndex > 0) {
       this.currentIndex = this.currentIndex - 1;
     }
-    
+    document.getElementById('scroll').scrollLeft -= 100;
+
   }
   handleNext() {
-    console.log(this.currentIndex);
-    if (this.currentIndex < this.days.length -1 ) {
+    if (this.currentIndex < this.days.length - 1) {
       this.currentIndex = this.currentIndex + 1;
     }
+    document.getElementById('scroll').scrollLeft += 100;
   }
 
 }
