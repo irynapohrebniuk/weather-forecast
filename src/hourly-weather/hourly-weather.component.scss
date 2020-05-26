@@ -30,9 +30,7 @@
   overflow: auto;
   white-space: nowrap;
 }
-section {
-  width: 600px;
-}
+
 
 ul {
   display: block;
@@ -59,7 +57,6 @@ ul {
 
 .grid-container {
   padding-top: 10px;
-  border-top: 1px solid #bfc1c3;
   display: grid;
   width: 100%;
   grid-template-columns: 40px auto 40px;
@@ -67,11 +64,12 @@ ul {
   text-align: center;
   justify-content: center;
   vertical-align: middle;
+  background-color: #e8f0fe;
 }
 
 .grid-container > div {
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #E8E8E8;
   padding: 0;
   display: inline-block;
   position: relative;

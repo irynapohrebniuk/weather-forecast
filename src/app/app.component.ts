@@ -11,15 +11,33 @@ import { CalcService } from '../services/calc-service';
   providers: [WeatherService, CalcService]
 })
 
-export class AppComponent {
+export class AppComponent  {
   
   title = 'weather-forecast';
   location = '';
   data = null;
   hourlyData = null;
+  lat;
+  lng;
+  origin;
 
   constructor(private calcService: CalcService,
     private weatherService: WeatherService) { }
+
+  ngOnInit() {
+      this.getUserLocation();
+  }
+
+  getUserLocation() {
+    // get Users current position
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        console.log("position", position)
+      });
+    }
+  }
 
   toCelcius(kelvin) {
     return this.calcService.toCelsius(kelvin);
