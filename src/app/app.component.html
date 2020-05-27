@@ -5,11 +5,17 @@
         <div class="title">Weather forecast</div>  
       </div>
       <div class="col-7 col-s-12 search right">
-        <form #form="ngForm" (ngSubmit)="handleSearch(location.value)">
+        <form #form="ngForm" (ngSubmit)="handleSearch(location.value)" >
           <div class="input-container">
             <input class="input-field" type="text" placeholder="Location ..." name="location" #location="ngModel" ngModel required />
             <fa-icon class="icon" [icon]="faCrosshairs" (click)="handleGeoLocation()"></fa-icon> 
             <input type="submit" value="Search" />
+          </div>
+          <div *ngIf="location.invalid && (location.dirty || location.touched)"
+              class="alert-danger">
+            <div *ngIf="location.errors.required">
+              The location is required
+            </div>
           </div>
         </form>
       </div>
@@ -18,7 +24,7 @@
 
 
 <section *ngIf="data" class="forecast">
-  <div class="forecast__city">{{data.name}}</div>
+  <div class="city">{{data.name}}</div>
   <div class="row center">
     <div class="col-4 col-s-12">
       <div class="row">
