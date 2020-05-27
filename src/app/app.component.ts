@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
 import { IWeather } from '../interfaces/weather.inteface';
 import { IHourlyForecast } from '../interfaces/hourly-forecast.inteface';
 import { CalcService } from '../services/calc-service';
+import { ILocation } from 'src/interfaces/location.inteface';
+import { faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,18 @@ import { CalcService } from '../services/calc-service';
   providers: [WeatherService, CalcService]
 })
 
-export class AppComponent  {
-  
+export class AppComponent implements OnInit  {
+  faCrosshairs = faCrosshairs;
   title = 'weather-forecast';
-  location = '';
+  location = "Wroclaw";
   data = null;
+  dataGeo = null;
   hourlyData = null;
   lat;
   lng;
-  origin;
 
-  constructor(private calcService: CalcService,
+  constructor(
+    private calcService: CalcService,
     private weatherService: WeatherService) { }
 
   ngOnInit() {
@@ -34,7 +37,7 @@ export class AppComponent  {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        console.log("position", position)
+        // console.log("getUserLocation()", this.lat, this.lng);
       });
     }
   }
@@ -47,9 +50,17 @@ export class AppComponent  {
     return this.calcService.parseTime(timestamp);
   }
 
+  handleGeoLocation() {
+    this.weatherService.getGeoData(this.lat,this.lng).
+      subscribe((data: ILocation) => {
+        this.data = data;
+        this.location = data.name;
+        this.handleSearch(this.location);
+      });
+  }
+
   handleSearch(location) {
     this.location = location;
-
     this.weatherService.getData(location)
       .subscribe((data: IWeather) => this.data = data);
     this.weatherService.getHourlyData(location)

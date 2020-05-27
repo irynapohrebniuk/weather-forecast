@@ -1,6 +1,6 @@
 <section>
     <div class="row">
-        <div class="col-4 center">
+        <div class="col-3 col-s-12 center">
             <div>{{getLDate(hourlyData.list[currentIndex].dt_txt)}}</div>
             <div class="time bold">{{getLTime(hourlyData.list[currentIndex].dt_txt)}}</div>
             <div class="center">
@@ -11,9 +11,9 @@
                 Feels like: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.feels_like)}} &deg;</span>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-9 col-s-12">
             <div class="row">
-                <div class="col-4 center bg">
+                <div class="col-3 center bg">
                 <div class="left"><img src="../assets/icons/temp.png" /></div>
                 <div>
                     <div>Temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp)}}&deg;</span>
@@ -28,7 +28,7 @@
                             &deg;</span></div>
                 </div>
                 </div>
-                <div class="col-4 center bg">
+                <div class="col-3 center bg center">
                     <div class="left">
                         <img src="../assets/icons/humidity.png" />
                     </div>
@@ -38,7 +38,7 @@
                         <div>Sea level: <span class="bold">{{hourlyData.list[currentIndex].main.sea_level}} mm </span></div>
                     </div>
                 </div>
-                <div class="col-4 center bg">
+                <div class="col-3 center bg">
                     <div class="left">
                         <img src="../assets/icons/wind.png" />
                     </div>
