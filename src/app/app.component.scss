@@ -154,3 +154,17 @@ section {
   border-left: 5px solid #a94442; /* red */
 }
 
+.red {
+  color: #a94442;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.error {
+  display: inline-block;
+  border: 1px solid #FEBC02 ;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  margin: 25px;
+}

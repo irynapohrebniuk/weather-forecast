@@ -14,13 +14,15 @@ import { faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class AppComponent implements OnInit  {
-  @ViewChild('form') formValues;
+  @ViewChild('form') inputValue;
   faCrosshairs = faCrosshairs;
   title = 'weather-forecast';
-  location = "Wroclaw";
+  city = '';
   data = null;
-  dataGeo = null;
   hourlyData = null;
+  incorrectLocation = false;
+  incorrectGeoLocation = false;
+  isWaiting = false;
   lat;
   lng;
 
@@ -33,7 +35,6 @@ export class AppComponent implements OnInit  {
   }
 
   getUserLocation() {
-    // get Users current position
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
@@ -52,20 +53,37 @@ export class AppComponent implements OnInit  {
 
   handleGeoLocation() {
     this.weatherService.getGeoData(this.lat,this.lng).
-      subscribe((data: ILocation) => {
+      subscribe(
+        (data: ILocation) => {
         this.data = data;
         this.handleSearch(data.name);
-        this.formValues.resetForm();
-      });
+        this.inputValue.resetForm();
+        },
+        err => {
+        this.incorrectGeoLocation = err;
+        }
+      );
   }
 
   handleSearch(location) {
     location = location.trim();
+    this.isWaiting = true;
     this.weatherService.getData(location)
-      .subscribe((data: IWeather) => this.data = data);
+      .subscribe(
+        (data: IWeather) => {
+          this.data = data;
+          this.incorrectLocation = false;
+          this.isWaiting = false;
+        },
+        err => {
+          this.incorrectLocation = err;
+          this.city = location;
+          this.isWaiting = false;
+        }
+      );
     this.weatherService.getHourlyData(location)
       .subscribe((hourlyData: IHourlyForecast) => this.hourlyData = hourlyData);
-      this.formValues.resetForm();
+    this.inputValue.resetForm();
   }
 
 }

@@ -17,11 +17,13 @@
               The location is required
             </div>
           </div>
+          <div *ngIf="isWaiting" class="center">Loading ... <img src="../assets//images/sun-weather.gif"/></div>
+          <div *ngIf="incorrectLocation" class="error center">The location <span class="red">{{city}}</span> is not found. Please enter the correct name of the location.</div>
+          <div *ngIf="incorrectGeoLocation" class="error center">Sorry we can't define your location</div>
         </form>
       </div>
   </section>
 </div>
-
 
 <section *ngIf="data" class="forecast">
   <div class="city">{{data.name}}</div>

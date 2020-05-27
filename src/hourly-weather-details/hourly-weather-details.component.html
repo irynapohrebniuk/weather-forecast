@@ -14,8 +14,8 @@
         <div class="col-9 col-s-12">
             <div class="row">
                 <div class="col-3 center bg">
-                <div class="left"><img src="../assets/icons/temp.png" /></div>
-                <div>
+                <div class="center"><img src="../assets/icons/temp.png" /></div>
+                <div class="left pad">
                     <div>Temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp)}}&deg;</span>
                     </div>
                 </div>
@@ -29,20 +29,20 @@
                 </div>
                 </div>
                 <div class="col-3 center bg center">
-                    <div class="left">
+                    <div class="center">
                         <img src="../assets/icons/humidity.png" />
                     </div>
-                    <div>
+                    <div class="left pad">
                         <div>Pressure: <span class="bold">{{hourlyData.list[currentIndex].main.pressure}} hPa</span></div>
                         <div>Humidity: <span class="bold">{{hourlyData.list[currentIndex].main.humidity}} % </span></div>
                         <div>Sea level: <span class="bold">{{hourlyData.list[currentIndex].main.sea_level}} mm </span></div>
                     </div>
                 </div>
                 <div class="col-3 center bg">
-                    <div class="left">
+                    <div class="center">
                         <img src="../assets/icons/wind.png" />
                     </div>
-                    <div>
+                    <div class="left pad">
                         <div>Speed: <span class="bold">{{hourlyData.list[currentIndex].wind.speed}} m/s</span></div>
                         <div>Direction and degrees: <span
                                 class="bold">{{getDirection(hourlyData.list[currentIndex].wind.deg)}}</span></div>

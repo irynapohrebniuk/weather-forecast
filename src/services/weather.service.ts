@@ -27,7 +27,7 @@ export class WeatherService {
     }
 
     handleError() {
-      return throwError("there is no connection to server api");
+      return throwError("there is no response from server api");
     }
 
 }
