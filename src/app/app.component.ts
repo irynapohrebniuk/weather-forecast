@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
 import { IWeather } from '../interfaces/weather.inteface';
 import { IHourlyForecast } from '../interfaces/hourly-forecast.inteface';
@@ -14,6 +14,7 @@ import { faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class AppComponent implements OnInit  {
+  @ViewChild('form') formValues;
   faCrosshairs = faCrosshairs;
   title = 'weather-forecast';
   location = "Wroclaw";
@@ -37,7 +38,6 @@ export class AppComponent implements OnInit  {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        // console.log("getUserLocation()", this.lat, this.lng);
       });
     }
   }
@@ -54,17 +54,18 @@ export class AppComponent implements OnInit  {
     this.weatherService.getGeoData(this.lat,this.lng).
       subscribe((data: ILocation) => {
         this.data = data;
-        this.location = data.name;
-        this.handleSearch(this.location);
+        this.handleSearch(data.name);
+        this.formValues.resetForm();
       });
   }
 
   handleSearch(location) {
-    this.location = location;
+    location = location.trim();
     this.weatherService.getData(location)
       .subscribe((data: IWeather) => this.data = data);
     this.weatherService.getHourlyData(location)
       .subscribe((hourlyData: IHourlyForecast) => this.hourlyData = hourlyData);
+      this.formValues.resetForm();
   }
 
 }
