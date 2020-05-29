@@ -51,6 +51,20 @@ export class AppComponent implements OnInit  {
     return this.calcService.parseTime(timestamp);
   }
 
+  getTimeNow() {
+    const day = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const localDate = day.toLocaleDateString('en-EN', options);
+    return localDate.toUpperCase();
+  }
+
+  getLTime(dateObj) {
+    return this.calcService.getTime(dateObj);
+  }
+  getLDate(dateObj) {
+    return this.calcService.getDate(dateObj);
+  }
+
   handleGeoLocation() {
     this.weatherService.getGeoData(this.lat,this.lng).
       subscribe(

@@ -29,16 +29,12 @@
   <div class="city">{{data.name}}</div>
   <div class="row center">
     <div class="col-4 col-s-12">
-      <div class="row">
-        <div class="col-4 col-s-2 center">
-          <img src="../assets/icons/degrees.png" />
-        </div>
-        <div class="col-8 col-s-2">
-          <div class="size-28 bold">{{toCelcius(data.main.temp)}} &deg;</div>
-          <div><img src="http://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png"></div>
-          <div> {{data.weather[0].main}}</div>
-        </div>
-      </div>
+          <div class="center pad bold">{{getTimeNow()}}</div>
+          <div class="center degree">
+            <div class="size-28 bold">{{toCelcius(data.main.temp)}} &deg;</div>
+            <div><img src="http://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png"></div>
+            <div> {{data.weather[0].main}}</div>
+          </div> 
     </div>
     <div class="col-8 col-s-12 center">
       <div class="pad">Pressure: <span class="bold">{{data.main.pressure}} hPa</span> </div>

@@ -18,12 +18,13 @@ export class CalcService {
   }
 
   getTime(dateObj) {
-    const time = new Date(dateObj).toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
+    const time = new Date(dateObj).toLocaleTimeString('pl-Pl', { hour: '2-digit', minute: '2-digit' });
     return time;
   }
 
-  getDate(dateObj) {
-    const date = new Date(dateObj).toLocaleDateString();
+  getDate(timestamp) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(timestamp).toLocaleDateString('en-EN', options);
     return date;
   }
   

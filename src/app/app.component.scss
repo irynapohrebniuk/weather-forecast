@@ -112,6 +112,17 @@ section {
   border-radius: 10px;
 }
 
+.degree {
+  position: relative;
+  padding-left: 35px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-image: url('../assets/icons/temperature.png');
+  background-repeat: no-repeat;
+  border-top: 1px solid #e8f0fe;
+  border-bottom: 1px solid #e8f0fe;
+}
+
 .center {
   text-align: center;
 }
@@ -138,7 +149,7 @@ section {
 }
 
 .pad {
-  padding: 10px;
+  padding: 3px;
 }
 
 .middle {

@@ -1,5 +1,6 @@
 <section>
     <div class="row">
+        
         <div class="col-3 col-s-12 center">
             <div>{{getLDate(hourlyData.list[currentIndex].dt_txt)}}</div>
             <div class="time bold">{{getLTime(hourlyData.list[currentIndex].dt_txt)}}</div>
@@ -11,45 +12,43 @@
                 Feels like: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.feels_like)}} &deg;</span>
             </div>
         </div>
+        
         <div class="col-9 col-s-12">
+            
             <div class="row">
+                
                 <div class="col-3 center bg">
-                <div class="center"><img src="../assets/icons/temp.png" /></div>
-                <div class="left pad">
-                    <div>Temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp)}}&deg;</span>
+                    <div class="center"><img src="../assets/icons/temp.png" /></div>
+                    <div class="center">
+                        <div>Temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp)}}&deg;</span></div>
+                        <div>Min temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_min)}} &deg; </span></div>
+                        <div>Max temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_max)}} &deg;</span></div>
                     </div>
                 </div>
-                <div>
-                    <div>Min temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_min)}}
-                            &deg; </span></div>
-                </div>
-                <div>
-                    <div>Max temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_max)}}
-                            &deg;</span></div>
-                </div>
-                </div>
+                
                 <div class="col-3 center bg center">
                     <div class="center">
                         <img src="../assets/icons/humidity.png" />
                     </div>
-                    <div class="left pad">
+                    <div class="center">
                         <div>Pressure: <span class="bold">{{hourlyData.list[currentIndex].main.pressure}} hPa</span></div>
                         <div>Humidity: <span class="bold">{{hourlyData.list[currentIndex].main.humidity}} % </span></div>
                         <div>Sea level: <span class="bold">{{hourlyData.list[currentIndex].main.sea_level}} mm </span></div>
                     </div>
                 </div>
+                
                 <div class="col-3 center bg">
                     <div class="center">
                         <img src="../assets/icons/wind.png" />
                     </div>
-                    <div class="left pad">
+                    <div class="center">
                         <div>Speed: <span class="bold">{{hourlyData.list[currentIndex].wind.speed}} m/s</span></div>
-                        <div>Direction and degrees: <span
-                                class="bold">{{getDirection(hourlyData.list[currentIndex].wind.deg)}}</span></div>
+                        <div>Direction and degrees: <span class="bold">{{getDirection(hourlyData.list[currentIndex].wind.deg)}}</span></div>
                     </div>
                 </div>
+            
             </div>
-        </div>
         
-    </div>
+        </div>
+    </div> 
 </section>
