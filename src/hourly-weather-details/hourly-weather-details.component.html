@@ -21,8 +21,8 @@
                     <div class="center"><img src="../assets/icons/temp.png" /></div>
                     <div class="center">
                         <div>Temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp)}}&deg;</span></div>
-                        <div>Min temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_min)}} &deg; </span></div>
-                        <div>Max temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_max)}} &deg;</span></div>
+                        <div>Min temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_min)}}&deg; </span></div>
+                        <div>Max temperature: <span class="bold"> {{toCelsius(hourlyData.list[currentIndex].main.temp_max)}}&deg;</span></div>
                     </div>
                 </div>
                 
@@ -43,7 +43,7 @@
                     </div>
                     <div class="center">
                         <div>Speed: <span class="bold">{{hourlyData.list[currentIndex].wind.speed}} m/s</span></div>
-                        <div>Direction and degrees: <span class="bold">{{getDirection(hourlyData.list[currentIndex].wind.deg)}}</span></div>
+                        <div>Direction and degrees: <span class="bold"> {{getDirection(hourlyData.list[currentIndex].wind.deg)}}</span></div>
                     </div>
                 </div>
             
